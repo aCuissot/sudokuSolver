@@ -52,15 +52,18 @@ def getSquare(sudoku, squareNumber):
 
 
 def setLine(sudoku, lineNumber, newLine):
-    return sudoku[lineNumber * constantes.SIZEOFALINE] + newLine + sudoku[(lineNumber + 1) * constantes.SIZEOFALINE:]
+    return sudoku[:lineNumber * constantes.SIZEOFALINE] + newLine + sudoku[(lineNumber + 1) * constantes.SIZEOFALINE:]
 
 
 def setColumn(sudoku, columnNumber, newColumn):
-    for i in range(constantes.SIZEOFALINE):
-        sudoku[i * constantes.SIZEOFALINE + columnNumber] = newColumn[i]
-    return sudoku
+    sudokuOut = sudoku[:columnNumber]
+    for i in range(constantes.SIZEOFALINE - 1):
+        sudokuOut += newColumn[i]
+        sudokuOut += sudoku[i * constantes.SIZEOFALINE + columnNumber+1:(i+1) * constantes.SIZEOFALINE + columnNumber]
+    return sudokuOut + newColumn[constantes.SIZEOFALINE-1] + sudoku[(constantes.SIZEOFALINE-1) * constantes.SIZEOFALINE + columnNumber +1:]
 
 
+# TODO: CHANGE THIS FUNCTION AS WE CAHNGED SETCOLUMN -> WRITE OUTPUT IN A NEW STRING AND ADD IT TO TESTS
 def setSquare(sudoku, squareNumber, newSquare):
     for i in range(constantes.SIZEOFASQUARE):
         for j in range(constantes.SIZEOFASQUARE):
@@ -74,3 +77,4 @@ detectionConversion.fromCSVConverter.displaySudoku(sudoKu)
 for i in range(9):
     print(getSquare(sudoKu, i))
 """
+
