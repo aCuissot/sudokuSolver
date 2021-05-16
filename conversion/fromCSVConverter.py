@@ -15,31 +15,6 @@ def loadDataBase(datasetPath):
     return sudokusUnsolved, sudokusSolved
 
 
-def printLine(line):
-    i = 0
-    outLine = ""
-    for char in line:
-        if i % constantes.SIZEOFASQUARE == 0:
-            outLine += '| '
-        outLine += char + ' '
-        i += 1
-    print(outLine[2:])
-
-
-def printBlankLine():
-    line = ""
-    for i in range(int(constantes.SIZEOFASQUARE)):
-        line += (int(constantes.SIZEOFASQUARE) * "--") + "+-"
-    print(line[:-2])
-
-
-def displaySudoku(sudoku):
-    sudoku = sudoku.replace("0", " ")
-    for i in range(constantes.SIZEOFALINE):
-        printLine(sudoku[i * constantes.SIZEOFALINE:(i + 1) * constantes.SIZEOFALINE])
-        if i % constantes.SIZEOFASQUARE == constantes.SIZEOFASQUARE - 1 and i != constantes.SIZEOFALINE - 1:
-            printBlankLine()
-
 
 
 # sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
