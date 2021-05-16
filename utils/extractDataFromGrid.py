@@ -12,3 +12,14 @@ def missingNumbersInEntity(entity):
         if not str(i) in entity:
             missing.append(str(i))
     return missing
+
+
+def getSquareConnectedRawsAndColumns(squareNumber):
+    """
+
+    :param squareNumber: the number of the square
+    :return: 2 lists: one for the raws connected to the square and one for the columns
+    """
+    raws = list(range(constantes.SIZEOFASQUARE * (squareNumber//constantes.SIZEOFASQUARE), constantes.SIZEOFASQUARE * (squareNumber//constantes.SIZEOFASQUARE + 1)))
+    columns = list(range(constantes.SIZEOFASQUARE * (squareNumber%constantes.SIZEOFASQUARE), constantes.SIZEOFASQUARE * (squareNumber%constantes.SIZEOFASQUARE + 1)))
+    return raws, columns
