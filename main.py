@@ -1,4 +1,4 @@
-from detectionConversion.fromCSVConverter import loadDataBase
+from conversion.fromCSVConverter import loadDataBase
 
 
 if __name__ == '__main__':

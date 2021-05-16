@@ -1,5 +1,5 @@
 import constantes
-import detectionConversion.fromCSVConverter
+
 
 # Getters
 
