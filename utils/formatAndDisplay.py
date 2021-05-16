@@ -33,7 +33,3 @@ def formatedSudokuToString(sudoku):
 
 def displaySudoku(sudoku):
     print(formatedSudokuToString(sudoku))
-
-
-sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
-displaySudoku(sudoKu)

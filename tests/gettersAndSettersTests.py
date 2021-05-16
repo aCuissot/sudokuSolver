@@ -3,10 +3,10 @@ from utils.gettersAndSetters import *
 
 
 class GettersSettersTests(unittest.TestCase):
-    def test_getLines(self):
+    def test_getRaws(self):
         sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
-        self.assertEqual('004300209', getLine(sudoKu, 0))
-        self.assertEqual('042910300', getLine(sudoKu, 8))
+        self.assertEqual('004300209', getRaw(sudoKu, 0))
+        self.assertEqual('042910300', getRaw(sudoKu, 8))
 
     def test_getColumns(self):
         sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
@@ -22,12 +22,12 @@ class GettersSettersTests(unittest.TestCase):
         self.assertEqual('000508910', getSquare(sudoKu, 7))
         self.assertEqual('105690300', getSquare(sudoKu, 8))
 
-    def test_setLines(self):
+    def test_setRaws(self):
         sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
-        sudoKu2 = setLine(sudoKu, 0, '604300219')
+        sudoKu2 = setRaw(sudoKu, 0, '604300219')
         self.assertEqual('604300219005009001070060043006002087190007400050083000600000105003508690042910300', sudoKu2)
-        sudoKu2 = setLine(sudoKu, 4, '190007400')
-        sudoKu2 = setLine(sudoKu2, 8, '642915387')
+        sudoKu2 = setRaw(sudoKu, 4, '190007400')
+        sudoKu2 = setRaw(sudoKu2, 8, '642915387')
         self.assertEqual('004300209005009001070060043006002087190007400050083000600000105003508690642915387', sudoKu2)
 
     def test_setColumns(self):

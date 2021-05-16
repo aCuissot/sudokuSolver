@@ -4,14 +4,14 @@ import constantes
 # Getters
 
 
-def getLine(sudoku, lineNumber):
+def getRaw(sudoku, rawNumber):
     """
 
     :param sudoku: the sudoku string
-    :param lineNumber: the number of the line to return (starting to column 0)
+    :param rawNumber: the number of the line to return (starting to column 0)
     :return: the string containing the line asked
     """
-    return sudoku[lineNumber * constantes.SIZEOFALINE: (lineNumber + 1) * constantes.SIZEOFALINE]
+    return sudoku[rawNumber * constantes.SIZEOFALINE: (rawNumber + 1) * constantes.SIZEOFALINE]
 
 
 def getColumn(sudoku, columnNumber):
@@ -47,15 +47,15 @@ def getSquare(sudoku, squareNumber):
 # Setters
 
 
-def setLine(sudoku, lineNumber, newLine):
+def setRaw(sudoku, rawNumber, newRaw):
     """
 
     :param sudoku: the sudoku string
-    :param lineNumber: the line to change number
-    :param newLine: the new line value
+    :param rawNumber: the line to change number
+    :param newRaw: the new line value
     :return: the sudoku modified
     """
-    return sudoku[:lineNumber * constantes.SIZEOFALINE] + newLine + sudoku[(lineNumber + 1) * constantes.SIZEOFALINE:]
+    return sudoku[:rawNumber * constantes.SIZEOFALINE] + newRaw + sudoku[(rawNumber + 1) * constantes.SIZEOFALINE:]
 
 
 def setColumn(sudoku, columnNumber, newColumn):
@@ -86,12 +86,3 @@ def setSquare(sudoku, squareNumber, newSquare):
         sudokuOut += newSquare[i*constantes.SIZEOFASQUARE:(i+1)*constantes.SIZEOFASQUARE]
         sudokuOut += sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE: (i+1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE]
     return sudokuOut + newSquare[(constantes.SIZEOFASQUARE-1) * constantes.SIZEOFASQUARE:] + sudoku[(constantes.SIZEOFASQUARE - 1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE:]
-
-
-"""
-sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
-detectionConversion.fromCSVConverter.displaySudoku(sudoKu)
-for i in range(9):
-    print(getSquare(sudoKu, i))
-"""
-
