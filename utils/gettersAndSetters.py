@@ -40,11 +40,7 @@ def getSquare(sudoku, squareNumber):
     """
     square = ""
     for i in range(constantes.SIZEOFASQUARE):
-        square += sudoku[(i + constantes.SIZEOFASQUARE * (
-                    squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE: (
-                                                                                                                                                                          i + constantes.SIZEOFASQUARE * (
-                                                                                                                                                                              squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (
-                                                                                                                                                                          squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE]
+        square += sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE: (i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE]
     return square
 
 
@@ -52,10 +48,24 @@ def getSquare(sudoku, squareNumber):
 
 
 def setLine(sudoku, lineNumber, newLine):
+    """
+
+    :param sudoku: the sudoku string
+    :param lineNumber: the line to change number
+    :param newLine: the new line value
+    :return: the sudoku modified
+    """
     return sudoku[:lineNumber * constantes.SIZEOFALINE] + newLine + sudoku[(lineNumber + 1) * constantes.SIZEOFALINE:]
 
 
 def setColumn(sudoku, columnNumber, newColumn):
+    """
+
+    :param sudoku: the sudoku string
+    :param columnNumber: the column to change number
+    :param newColumn: the new column value
+    :return: the sudoku modified
+    """
     sudokuOut = sudoku[:columnNumber]
     for i in range(constantes.SIZEOFALINE - 1):
         sudokuOut += newColumn[i]
@@ -63,12 +73,19 @@ def setColumn(sudoku, columnNumber, newColumn):
     return sudokuOut + newColumn[constantes.SIZEOFALINE-1] + sudoku[(constantes.SIZEOFALINE-1) * constantes.SIZEOFALINE + columnNumber +1:]
 
 
-# TODO: CHANGE THIS FUNCTION AS WE CAHNGED SETCOLUMN -> WRITE OUTPUT IN A NEW STRING AND ADD IT TO TESTS
 def setSquare(sudoku, squareNumber, newSquare):
-    for i in range(constantes.SIZEOFASQUARE):
-        for j in range(constantes.SIZEOFASQUARE):
-            sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE + j] = newSquare[i*constantes.SIZEOFASQUARE+j]
-    return sudoku
+    """
+
+    :param sudoku: the sudoku string
+    :param squareNumber: the square to change number
+    :param newSquare: the new square value
+    :return: the sudoku modified
+    """
+    sudokuOut = sudoku[:(constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE]
+    for i in range(constantes.SIZEOFASQUARE-1):
+        sudokuOut += newSquare[i*constantes.SIZEOFASQUARE:(i+1)*constantes.SIZEOFASQUARE]
+        sudokuOut += sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE: (i+1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE]
+    return sudokuOut + newSquare[(constantes.SIZEOFASQUARE-1) * constantes.SIZEOFASQUARE:] + sudoku[(constantes.SIZEOFASQUARE - 1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE:]
 
 
 """
