@@ -1,6 +1,8 @@
 import constantes
 import detectionConversion.fromCSVConverter
 
+# Getters
+
 
 def getLine(sudoku, lineNumber):
     """
@@ -44,6 +46,26 @@ def getSquare(sudoku, squareNumber):
                                                                                                                                                                               squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (
                                                                                                                                                                           squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE]
     return square
+
+
+# Setters
+
+
+def setLine(sudoku, lineNumber, newLine):
+    return sudoku[lineNumber * constantes.SIZEOFALINE] + newLine + sudoku[(lineNumber + 1) * constantes.SIZEOFALINE:]
+
+
+def setColumn(sudoku, columnNumber, newColumn):
+    for i in range(constantes.SIZEOFALINE):
+        sudoku[i * constantes.SIZEOFALINE + columnNumber] = newColumn[i]
+    return sudoku
+
+
+def setSquare(sudoku, squareNumber, newSquare):
+    for i in range(constantes.SIZEOFASQUARE):
+        for j in range(constantes.SIZEOFASQUARE):
+            sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE + j] = newSquare[i*constantes.SIZEOFASQUARE+j]
+    return sudoku
 
 
 """
