@@ -11,7 +11,7 @@ def loadDataBase(datasetPath):
     csvContent = pd.read_csv(datasetPath, header=None)
     sudokus = csvContent.values.tolist()[1:]
     sudokusUnsolved = list(list(zip(*sudokus))[0])
-    sudokusSolved = list(list(zip(*sudokus))[0])
+    sudokusSolved = list(list(zip(*sudokus))[1])
     return sudokusUnsolved, sudokusSolved
 
 

@@ -27,6 +27,21 @@ def getColumn(sudoku, columnNumber):
     return column
 
 
+def getColumnPartial(sudoku, columnNumber):
+    """
+
+    :param sudoku: the partial sudoku string
+    :param columnNumber: the number of the column to return (starting to column 0)
+    :return: the string containing the column asked
+    """
+    column = ""
+    numberOfRaws = int(len(sudoku) / constantes.SIZEOFALINE)
+    for i in range(numberOfRaws):
+        column += sudoku[i * constantes.SIZEOFALINE + columnNumber]
+    return column
+
+
+
 def getSquare(sudoku, squareNumber):
     """
     square numbers are annotated as :
