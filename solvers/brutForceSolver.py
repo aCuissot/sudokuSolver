@@ -5,29 +5,6 @@ from utils.extractDataFromGrid import *
 from utils.formatAndDisplay import displaySudoku
 
 
-def checkIfPartialGridGotError(sudoku, numberOfRaws):
-    """
-
-    :param numberOfRaws: the number of raws completed ad so to check
-    :param sudoku: the partial sudoku string, it need to be a complete number of raws
-    :return: True if the grid don't have trivial error
-             False if it have at least one
-    """
-    # check each raw
-    for i in range(numberOfRaws):
-        currRaw = getRaw(sudoku, i)
-        for j in range(1, constantes.SIZEOFALINE + 1):
-            if currRaw.count(str(j)) > 1:
-                return False
-    # check each partial column
-    for i in range(constantes.SIZEOFALINE):
-        currColumn = getColumn(sudoku, i)
-        for j in range(1, constantes.SIZEOFALINE + 1):
-            if currColumn.count(str(j)) > 1:
-                return False
-    return True
-
-
 def checkIfPartialGridColumnsGotError(sudoku):
     """
     here we check only columns because with the way we fill raws, we cannot have error in a raw
@@ -39,6 +16,11 @@ def checkIfPartialGridColumnsGotError(sudoku):
         currColumn = getColumn(sudoku, i)
         for j in range(1, constantes.SIZEOFALINE + 1):
             if currColumn.count(str(j)) > 1:
+                return False
+    for i in range(constantes.SIZEOFALINE):
+        currSquare = getSquare(sudoku, i)
+        for j in range(1, constantes.SIZEOFALINE + 1):
+            if currSquare.count(str(j)) > 1:
                 return False
     return True
 
@@ -73,14 +55,9 @@ solution = "86437125932584976197126584343619258719865743225748391668973412571352
 
 
 a1="864371259325849761971265843436192587198657432257483916689734125713528694542916378"
-a2="864375219325749861279861543436152987198637452951483726687294135713528694542916378"
 print(checkIfPartialGridColumnsGotError(a1))
-print(checkIfPartialGridColumnsGotError(a2))
 displaySudoku(sudoKu)
 displaySudoku(a1)
-displaySudoku(a2)
 displaySudoku(solution)
-print('samere pourquoi y a plusieurs solutions?AAAAAAAaaaaaaaaaaaaaaaaaaa')
 
-print(solveWithBrutForce(sudoKu))
-
+solveWithBrutForce(sudoKu)
