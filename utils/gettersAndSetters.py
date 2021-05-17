@@ -101,3 +101,17 @@ def setSquare(sudoku, squareNumber, newSquare):
         sudokuOut += newSquare[i*constantes.SIZEOFASQUARE:(i+1)*constantes.SIZEOFASQUARE]
         sudokuOut += sudoku[(i + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE: (i+1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + squareNumber % constantes.SIZEOFASQUARE * constantes.SIZEOFASQUARE]
     return sudokuOut + newSquare[(constantes.SIZEOFASQUARE-1) * constantes.SIZEOFASQUARE:] + sudoku[(constantes.SIZEOFASQUARE - 1 + constantes.SIZEOFASQUARE * (squareNumber // constantes.SIZEOFASQUARE)) * constantes.SIZEOFALINE + (squareNumber % constantes.SIZEOFASQUARE + 1) * constantes.SIZEOFASQUARE:]
+
+
+def setPermutation(sudoku, rawNumber, permutation):
+    """
+
+    :param sudoku: sudoku string
+    :param rawNumber: the number of the raw which have to be changed
+    :param permutation: the permutation to insert in the raw
+    :return:
+    """
+    raw = getRaw(sudoku, rawNumber)
+    for i in permutation:
+        raw = raw.replace('0', str(i), 1)
+    return setRaw(sudoku, rawNumber, raw)

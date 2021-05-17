@@ -4,13 +4,14 @@ import constantes
 from utils.extractDataFromGrid import *
 
 
-def checkIfPartialGridGotError(sudoku):
+def checkIfPartialGridGotError(sudoku, numberOfRaws):
     """
 
     :param sudoku: the partial sudoku string, it need to be a complete number of raws
     :return: True if the grid don't have trivial error
              False if it have at least one
     """
+    sudoku = sudoku[:numberOfRaws*constantes.SIZEOFALINE]
     # check each raw
     numberOfRaws = int(len(sudoku) / constantes.SIZEOFALINE)
     for i in range(numberOfRaws):
@@ -27,17 +28,9 @@ def checkIfPartialGridGotError(sudoku):
     return True
 
 
-def setPermutation(sudoku, rawNumber, permutation):
-    raw = getRaw(sudoku, rawNumber)
-    for i in permutation:
-        raw.replace('0', i, 1)
-    sudoku = setRaw(sudoku, rawNumber, raw)
-    return sudoku
-
-
 def solveWithBrutForce(sudoku, i=0):
     # case the previous change was an error
-    if not checkIfPartialGridGotError(sudoku):
+    if i != 0 and not checkIfPartialGridGotError(sudoku, i):
         return
 
     # case we don't have errors (see previous if loop) and the grid is full => we have the right solution

@@ -12,6 +12,15 @@ class GettersSettersTests(unittest.TestCase):
         sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
         self.assertEqual('090273080', getColumn(sudoKu, 5))
         self.assertEqual('300000059', getColumn(sudoKu, 3))
+        partialSudoku = '004300209005009001070060043006002087190007400050083000'
+        self.assertEqual('090273', getColumnPartial(partialSudoku, 5))
+        self.assertEqual('300000', getColumnPartial(partialSudoku, 3))
+        self.assertEqual('000010', getColumnPartial(partialSudoku, 0))
+
+    def test_setPermutation(self):
+        sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
+        self.assertEqual('124334259005009001070060043006002087190007400050083000600000105003508690042910300', setPermutation(sudoKu, 0, [1, 2, 3, 4, 5]))
+        self.assertEqual('004300209005009001070060043006002087190007400050083000600000105123538694042910300', setPermutation(sudoKu, 7, [1, 2, 3, 4]))
 
     def test_getSquares(self):
         sudoKu = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
